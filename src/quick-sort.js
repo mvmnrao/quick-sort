@@ -13,27 +13,47 @@ function quickSort(input) {
         return input.sort();
     }
     else {
-        return arrQuickSort(input);
+        var finalArray = arrQuickSort(input, 0, input.length - 2, input[input.length - 1]);
+        return finalArray;
     }
 
 };
 module.exports = quickSort;
 
-function arrQuickSort(array) {
-  if (array.length <= 1) {
-    return array;
-  }
+function arrQuickSort(array, left, right, pivot) {
 
-  var pivot = array[0];
-  
-  var left = []; 
-  var right = [];
-  var i;
-  var arrLength = array.length;
+    if (array.length <= 1) {
+        return array;
+    }
 
-  for (i = 1; i < arrLength; i++) {
-    array[i] < pivot ? left.push(array[i]) : right.push(array[i]);
-  }
+    var leftArray = [];
+    var rightArray = [];
 
-  return arrQuickSort(left).concat(pivot, arrQuickSort(right));
+    while (true) {
+
+        while (array[left] < pivot) {
+            ++left;
+        }
+
+        while (array[right] > pivot) {
+            --right;
+        }
+
+        if (left >= right) {
+            array[array.length - 1] = array[left];
+            array[left] = pivot;
+            break;
+        }
+        else {
+            var r = array[right];
+            array[right] = array[left];
+            array[left] = r;
+        }
+    }
+
+    leftArray = array.slice(0, left);
+    rightArray = array.slice(left, array.length);
+
+    return arrQuickSort(leftArray, 0, leftArray.length - 2, leftArray[leftArray.length - 1]).
+    concat(arrQuickSort(rightArray, 0, rightArray.length - 2, rightArray[rightArray.length - 1]));
 };

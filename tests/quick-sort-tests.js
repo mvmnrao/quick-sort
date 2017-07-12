@@ -27,8 +27,9 @@ describe('Quick Sort', function () {
     });
 
     it('sorts an array of numbers', function () {
-        var unsorted = [9, 8, 7, 10, 6, 100, 5, 4, 99, 3, 2, 1];
-        var sorted = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 99, 100];
+        //var unsorted = [9, 8, 7, 10, 6, 100, 5, 4, 99, 3, 2, 1];
+        var unsorted = [35, 33, 42, 10, 14, 19, 27, 44, 26, 31];
+        var sorted = [10, 14, 19, 26, 27, 31, 33, 35, 42, 44];
         var results = quickSort(unsorted);
         assert.deepEqual(results, sorted, 'Expected arrays to match');
     });
