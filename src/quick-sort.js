@@ -13,8 +13,27 @@ function quickSort(input) {
         return input.sort();
     }
     else {
-        return input.sort(function (a, b) { return a - b; });
+        return arrQuickSort(input);
     }
 
 };
 module.exports = quickSort;
+
+function arrQuickSort(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+
+  var pivot = array[0];
+  
+  var left = []; 
+  var right = [];
+  var i;
+  var arrLength = array.length;
+
+  for (i = 1; i < arrLength; i++) {
+    array[i] < pivot ? left.push(array[i]) : right.push(array[i]);
+  }
+
+  return arrQuickSort(left).concat(pivot, arrQuickSort(right));
+};
